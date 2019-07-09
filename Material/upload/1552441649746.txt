@@ -1,0 +1,64 @@
+ServletRequest
+
+-servlet으로 전달된 정보를 가지고 있는 객체
+
+- 주요메소드
+String getParameter("key")  : key와 연결된 value를 추출한다.
+String [] getParameterValues('key")   :key와 연결된 여러개의 value를 추출한다.
+Enumeration getParameterNames() : 전달된 key들을 모아온다.
+
+
+
+
+MVC
+M: Model -> java
+V : View -> jsp
+C : controller -> servlet
+
+[MVC의 전제 조건]
+
+1.controller는 하나(only one)이다.
+2.view는 수동적이다. -> 필요한 데이터를 직접 호출하여 획득하지 않는다.
+
+1.sendRedirect
+ 새로운 Request가 발생한다.
+
+2. forward
+ 기존의  request가 다음페이지에 전달된다.
+
+
+ActionTag
+1. 배경
+jsp에서 자바코드를 태그의 형태로 표현할 수 있도록 만들어 놓은 태그
+
+2. 사용방법
+(1) <jsp:uesBean/>
+객체 생성 또는 session, request 에 저장됨
+객체를 얻을 때 사용.
+
+id : 객체 변수 명
+class : 생성할 객체 타입 (패키지를 포함한 클래스 이름 명기)
+scope : session, 또는 request의 범위를 지정
+
+*주의 사항
+useBean을 사용할 때 대상 객체는 반드시 default 생성자가 있어야 한다.
+
+(2)<jsp:setProperty/>
+객체의 set method를 호출
+
+name : 이미 생성된 객체 변수명
+property : set 접두어를 제외한 method 이름
+value : 저장할 값
+
+getParameter() 사용을 하지 않아도 전달된 parameter를 받을 수 있다.
+단, parameter의 key 명과 method 이름이 일치 하여야 한다.
+ex) <jsp:setProperty name="xxx" property="*" />	
+
+(3) <jsp:getProperty/>
+객체의 get method를 호출
+
+name : 이미 생성된 객체 변수명
+property : set 접두어를 제외한 method 이름
+
+*주의 사항
+호출하면 화면에 값을 출력한다.
